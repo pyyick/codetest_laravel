@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
-use App\firstName;
+use App\FirstName;
 
 class CreateFirstnameTable extends Migration
 {
@@ -41,7 +41,7 @@ class CreateFirstnameTable extends Migration
             //Check null
             if (empty($record[0]))
                 continue;
-            $firstName = new firstName();
+            $firstName = new FirstName();
             $firstName->label = mb_convert_encoding($record[0], "UTF-8");
             switch ($record[1]){
                 case "M":
