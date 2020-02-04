@@ -9,7 +9,7 @@
                             <input id="search" type="text" v-model="firstName" placeholder="First name">
                             <button id="search-button" v-on:submit="getFirstName" type="submit">Search</button>
                         </form>
-                            <ul v-if="results.length > 0">
+                        <ul v-if="results.length > 0">
                             <li v-for="result in results" :key="result.id">
                                 <div class="row">
                                     <span class="label">Name: </span>
@@ -29,6 +29,9 @@
                                 </div>
                             </li>
                         </ul>
+                        <div v-else>
+                            No results yet
+                        </div>
                     </div>
                 </div>
             </div>
