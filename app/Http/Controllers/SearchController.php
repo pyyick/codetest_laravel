@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class SearchController extends Controller
 {
     public function search(Request $request){
-        $firstName = FirstName::where("label", 'like', "{$request->label}%")->limit(20)->get();
+        $keyword = ucfirst(mb_strtolower($request->label));
+        $firstName = FirstName::where("label", 'like', "{$keyword}%")->limit(20)->get();
         $firstName = $firstName->map(function($name, $key){
             switch ($name["type"]){
                 case 0:

@@ -65,7 +65,6 @@
         methods: {
             getFirstName: _.debounce(
                 function() {
-                    console.log(this.firstName);
                     axios.post('/api/search', {
                         label: this.firstName
                     }).then(
