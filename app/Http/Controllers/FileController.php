@@ -36,17 +36,17 @@ class FileController extends Controller
         Storage::disk('local')->put($newFilename, implode(',', $firstColumn));
         foreach ($rows as $row)
         {
+            $record = str_getcsv($row, ";");
             if ($first_row){
                 $first_row = FALSE;
+                //Check first column
+                if ($record[0] !== "id" || $record[1] !== "firstname" || $record[2] !== "lastname")
+                    return response()->json(["error" => "Wrong file format"], 400);
                 continue;
             }
-            $record = str_getcsv($row, ";");
             //Check null
             if (empty($record[0]))
                 continue;
-            //Check column
-            if (count($record) !== 3)
-                return response()->json(["error" => "Wrong file format"], 400);
             //Assign first 3 rows
             $output["id"] = $record[0];
             $firstName = mb_convert_encoding($record[1], "UTF-8");
